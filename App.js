@@ -96,7 +96,7 @@ const App: () => Node = () => {
         // </Section>
         // <LearnMoreLinks />
         >
-          <ImageBackground source={image} style={image} />
+          {/* <ImageBackground source={image} style={image} /> */}
         </View>
       </ScrollView>
     </>
