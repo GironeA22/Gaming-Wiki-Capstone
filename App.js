@@ -31,7 +31,7 @@ import {
 
 // import moment from 'moment';
 
-// import SearchInput from './SearchInput';
+import SearchInput from './SearchInput';
 
 const Section = ({ children, title }): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -76,6 +76,7 @@ const App: () => Node = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
+            <SearchInput border-radius="1px black" />
           <Section title="Step One">
             Edit <Text style={styles.highlight}>App.js</Text> to change this
             screen and then come back to see your edits.
@@ -126,6 +127,9 @@ const styles = StyleSheet.create({
   smallText: {
     fontSize: 18,
   },
+  searchBox: {
+    border
+  }
 });
 
 export default App;
