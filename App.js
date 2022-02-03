@@ -76,7 +76,7 @@ const App: () => Node = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-            <SearchInput border-radius="1px black" />
+            <SearchInput />
           <Section title="Step One">
             Edit <Text style={styles.highlight}>App.js</Text> to change this
             screen and then come back to see your edits.
@@ -127,9 +127,9 @@ const styles = StyleSheet.create({
   smallText: {
     fontSize: 18,
   },
-  searchBox: {
-    border
-  }
+  // searchBox: {
+  //   border
+  // }
 });
 
 export default App;
