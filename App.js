@@ -17,23 +17,21 @@ import {
   useColorScheme,
   View,
   ImageBackground,
-  // KeyboardAvoidingView, // Automatically pushes elements out from under keyboard
-  // ActivityIndicator, // The spinning loader
+  KeyboardAvoidingView, // Automatically pushes elements out from under keyboard
+  ActivityIndicator, // The spinning loader
 } from 'react-native';
 
 import {
   Colors,
-  // DebugInstructions,
+  DebugInstructions,
   Header,
-  // LearnMoreLinks,
-  // ReloadInstructions,
+  LearnMoreLinks,
+  ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
 // import moment from 'moment';
 
 // import SearchInput from './SearchInput';
-
-import BG from './utils/RandomBG';
 
 const Section = ({ children, title }): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -66,9 +64,6 @@ const App: () => Node = () => {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
-  const image = {
-    uri: './assets/EGS_TheBindingofIsaacRepentance_NicalisIncEdmundMcmillen_S2-1200x1600-eb480826546ffb2ed1560ceec262b615.jpg',
-  };
 
   return (
     <>
@@ -78,25 +73,23 @@ const App: () => Node = () => {
         style={backgroundStyle}>
         <Header />
         <View
-        // style={{
-        //   backgroundColor: isDarkMode ? Colors.black : Colors.white,
-        // }}>
-        // <Section title="Step One">
-        //   Edit <Text style={styles.highlight}>App.js</Text> to change this
-        //   screen and then come back to see your edits.
-        // </Section>
-        // <Section title="See Your Changes">
-        //   <ReloadInstructions />
-        // </Section>
-        // <Section title="Debug">
-        //   <DebugInstructions />
-        // </Section>
-        // <Section title="Learn More">
-        //   Read the docs to discover what to do next:
-        // </Section>
-        // <LearnMoreLinks />
-        >
-          <ImageBackground source={image} style={image} />
+          style={{
+            backgroundColor: isDarkMode ? Colors.black : Colors.white,
+          }}>
+          <Section title="Step One">
+            Edit <Text style={styles.highlight}>App.js</Text> to change this
+            screen and then come back to see your edits.
+          </Section>
+          <Section title="See Your Changes">
+            <ReloadInstructions />
+          </Section>
+          <Section title="Debug">
+            <DebugInstructions />
+          </Section>
+          <Section title="Learn More">
+            Read the docs to discover what to do next:
+          </Section>
+          <LearnMoreLinks />
         </View>
       </ScrollView>
     </>
