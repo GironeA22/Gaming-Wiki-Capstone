@@ -23,10 +23,6 @@ import {
 
 import {
   Colors,
-  // DebugInstructions,
-  Header,
-  // LearnMoreLinks,
-  // ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
 // import moment from 'moment';
@@ -34,6 +30,8 @@ import {
 // import SearchInput from './SearchInput';
 
 import BG from './utils/RandomBG';
+import Isaac from './assets/EGS_TheBindingofIsaacRepentance_NicalisIncEdmundMcmillen_S2-1200x1600-eb480826546ffb2ed1560ceec262b615.jpg';
+import Minecraft from './assets/jbareham_191158_ply0958_decade_minecraft.jpg';
 
 const Section = ({ children, title }): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -66,9 +64,9 @@ const App: () => Node = () => {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
-  const image = {
-    uri: './assets/EGS_TheBindingofIsaacRepentance_NicalisIncEdmundMcmillen_S2-1200x1600-eb480826546ffb2ed1560ceec262b615.jpg',
-  };
+  // const image = {
+  //   uri: './assets/EGS_TheBindingofIsaacRepentance_NicalisIncEdmundMcmillen_S2-1200x1600-eb480826546ffb2ed1560ceec262b615.jpg',
+  // };
 
   return (
     <>
@@ -76,28 +74,13 @@ const App: () => Node = () => {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        <Header />
-        <View
-        // style={{
-        //   backgroundColor: isDarkMode ? Colors.black : Colors.white,
-        // }}>
-        // <Section title="Step One">
-        //   Edit <Text style={styles.highlight}>App.js</Text> to change this
-        //   screen and then come back to see your edits.
-        // </Section>
-        // <Section title="See Your Changes">
-        //   <ReloadInstructions />
-        // </Section>
-        // <Section title="Debug">
-        //   <DebugInstructions />
-        // </Section>
-        // <Section title="Learn More">
-        //   Read the docs to discover what to do next:
-        // </Section>
-        // <LearnMoreLinks />
-        >
-          {/* <ImageBackground source={image} style={image} /> */}
-        </View>
+        <ImageBackground source={Minecraft} resizeMode="cover" style={styles.image}>
+          <View>
+            <Text style={styles.textStyle}>
+              This will show content
+              </Text>
+          </View>
+        </ImageBackground>
       </ScrollView>
     </>
   );
@@ -106,21 +89,19 @@ const App: () => Node = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#34495E',
+    // backgroundColor: '#34495E',
   },
   imageContainer: {
     flex: 1,
   },
   image: {
     flex: 1,
-    width: null,
-    height: null,
-    resizeMode: 'cover',
+    justifyContent: 'center',
   },
   detailsContainer: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: 'rgba(0,0,0,0.2)',
+    // backgroundColor: 'rgba(0,0,0,0.2)',
     paddingHorizontal: 20,
   },
   textStyle: {

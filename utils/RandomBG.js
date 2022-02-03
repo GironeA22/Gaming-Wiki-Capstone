@@ -2,14 +2,14 @@
 import React from 'react';
 import { Image } from 'react-native';
 
-const images = [];
-var index = 0;
-
-images[0] = <img src="../assets/EGS_TheBindingofIsaacRepentance_NicalisIncEdmundMcmillen_S2-1200x1600-eb480826546ffb2ed1560ceec262b615.jpg" />;
-images[1] = <img src="../assets/il_1140xN.3427102381_dbt1.jpg" />;
-images[2] = <img src="../assets/jbareham_191158_ply0958_decade_minecraft.jpg" />;
-index = Math.floor(Math.random() * images.length);
-document.write(images[index]);
+// const images = [
+//     images[0] = '../assets/EGS_TheBindingofIsaacRepentance_NicalisIncEdmundMcmillen_S2-1200x1600-eb480826546ffb2ed1560ceec262b615.jpg' ,
+//     images[1] = '../assets/il_1140xN.3427102381_dbt1.jpg',
+//     images[2] = '../assets/jbareham_191158_ply0958_decade_minecraft.jpg',
+// ];
+// var index = 0;
+// index = Math.floor(Math.random() * images.length);
+// document.write(images[index]);
 
 // import image2 from '../assets/EGS_TheBindingofIsaacRepentance_NicalisIncEdmundMcmillen_S2-1200x1600-eb480826546ffb2ed1560ceec262b615.jpg';
 // import image3 from '../assets/il_1140xN.3427102381_dbt1.jpg';
@@ -21,19 +21,29 @@ document.write(images[index]);
 //     image4,
 // ];
 
-//  componentDidMount(); {
-//     this.changeImage();
-// }
+// componentDidMount(this.changeImage());
 
 // const changeImage = () => {
 //     const randomNumber = Math.floor(Math.random() * images.length);
 //     this.setState({
-//         currentImageIndex: randomNumber
+//         currentImageIndex: randomNumber,
 //     });
-// }
+// };
 
 // <Image
 //     source={images[this.state.currentImageIndex]}
-//   />
+//   />;
 
-export default BG => images[index];
+// export default function BG() {
+//     const randomFile = require('select-random-file');
+
+//     const dir = '../assets/';
+//     randomFile(dir, (err, file) => {
+//         console.log(`The random file is: ${file}`);
+//         if (err) {
+//             console.log('Random file did not work');
+//         }
+//     });
+// }
+
+// export default BG => images[index];
