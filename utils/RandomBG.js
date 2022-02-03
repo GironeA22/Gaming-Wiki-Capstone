@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
+import { Image } from 'react-native';
 
 // const images = [];
 // var index = 0;
@@ -20,7 +21,7 @@ const images = [
     image4,
 ];
 
-function componentDidMount() {
+ componentDidMount(); {
     this.changeImage();
 }
 
@@ -31,4 +32,8 @@ const changeImage = () => {
     });
 }
 
-export default BG => images[index];
+<Image
+    source={images[this.state.currentImageIndex]}
+  />
+
+export default BG => Image;
