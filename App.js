@@ -7,7 +7,8 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import MCItems from './utils/api';
 // import type {Node} from 'react';
 import {
   ScrollView,
@@ -16,6 +17,8 @@ import {
   Text,
   useColorScheme,
   View,
+  TextInput,
+  FlatList,
   ImageBackground,
   KeyboardAvoidingView, // Automatically pushes elements out from under keyboard
   ActivityIndicator, // The spinning loader
@@ -31,7 +34,7 @@ import {
 
 // import moment from 'moment';
 
-import SearchInput from './SearchInput';
+// import SearchInput from './SearchInput';
 
 const Section = ({ children, title }): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -64,6 +67,17 @@ const App: () => Node = () => {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const handleChange = e => {
+    setSearchTerm(e.target.value);
+  };
+  useEffect(() => {
+    const results = MCItems.filter(item =>
+      item.toLowerCase().includes(searchTerm)
+    );
+    setSearchResults(results);
+  }, [searchTerm]);
 
   return (
     <>
@@ -76,8 +90,18 @@ const App: () => Node = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-            <SearchInput />
-          <Section title="Step One">
+          <TextInput
+            type="text"
+            style={styles.searchBox}
+            placeholder="Search a Minecraft Item (for now)"
+            value={searchTerm}
+            onchange={handleChange} />
+          <FlatList>
+            {searchResults.map(item => (
+              <li>{item}</li>
+            ))}
+          </FlatList>
+          {/* <Section title="Step One">
             Edit <Text style={styles.highlight}>App.js</Text> to change this
             screen and then come back to see your edits.
           </Section>
@@ -90,7 +114,7 @@ const App: () => Node = () => {
           <Section title="Learn More">
             Read the docs to discover what to do next:
           </Section>
-          <LearnMoreLinks />
+          <LearnMoreLinks /> */}
         </View>
       </ScrollView>
     </>
@@ -100,7 +124,7 @@ const App: () => Node = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#34495E',
+    // backgroundColor: '#34495E',
   },
   imageContainer: {
     flex: 1,
@@ -114,7 +138,7 @@ const styles = StyleSheet.create({
   detailsContainer: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: 'rgba(0,0,0,0.2)',
+    // backgroundColor: 'rgba(0,0,0,0.2)',
     paddingHorizontal: 20,
   },
   textStyle: {
@@ -127,9 +151,11 @@ const styles = StyleSheet.create({
   smallText: {
     fontSize: 18,
   },
-  // searchBox: {
-  //   border
-  // }
+  searchBox: {
+    backgroundColor: 'red',
+    borderColor: 'black',
+    textDecorationColor: 'hotpink',
+  },
 });
 
 export default App;

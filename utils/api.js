@@ -1,26 +1,57 @@
 /* eslint-disable prettier/prettier */
-export const getLocationId = async city => {
-  const response = await fetch(
-    `https://www.metaweather.com/api/location/search/?query=${city}`,
-  );
+import React, { useEffect, useState } from 'react';
 
-  const r = await response.json();
+export function MCItems() {
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [items, setItems] = useState([]);
 
-  return r[0].woeid;
-};
+  useEffect(() => {
+    fetch('https://minecraft-ids.grahamedgecombe.com/items.json')
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setItems(result);
+        },
+        // eslint-disable-next-line no-shadow
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }, [])
 
-export const getWeather = async woeid => {
-  const response = await fetch(
-    `https://www.metaweather.com/api/location/${woeid}/`,
-  );
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return <div>Loading...</div>;
+  } else {
+    return (
+      <ul>
+        {items.map(item => (
+          <li key={item.id}>
+            {item.name} {item.price}
+          </li>
+        ))}
+      </ul>
+    );
+  }
+}
 
-  let {title, consolidated_weather} = await response.json();
-  let {weather_state_name, the_temp, created} = consolidated_weather[0];
 
-  return {
-    location: title,
-    weather: weather_state_name,
-    temperature: the_temp,
-    created: created,
-  };
-};
+// export const getWeather = async woeid => {
+//   const response = await fetch(
+//     `https://www.metaweather.com/api/location/${woeid}/`,
+//   );
+
+//   let {title, consolidated_weather} = await response.json();
+//   let {weather_state_name, the_temp, created} = consolidated_weather[0];
+
+//   return {
+//     location: title,
+//     weather: weather_state_name,
+//     temperature: the_temp,
+//     created: created,
+//   };
+// };
