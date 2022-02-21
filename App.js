@@ -6,10 +6,13 @@
  * @format
  * @flow strict-local
  */
+var _ = require('lodash');
+import { filter } from 'lodash';
 
 import React, { useState, useEffect } from 'react';
-import MCItems from './utils/api';
-// import type {Node} from 'react';
+
+import {MCItems,  MCApi2 } from './utils/api';
+
 import {
   ScrollView,
   StatusBar,
@@ -62,6 +65,8 @@ const Section = ({ children, title }): Node => {
   );
 };
 
+
+
 const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
@@ -70,12 +75,13 @@ const App: () => Node = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const handleChange = e => {
+    e.preventDefault();
     setSearchTerm(e.target.value);
   };
   useEffect(() => {
-    const results = MCItems.filter(item =>
+    const results = _.filter(MCItems, (item =>
       item.toLowerCase().includes(searchTerm)
-    );
+    ));
     setSearchResults(results);
   }, [searchTerm]);
 
@@ -90,17 +96,18 @@ const App: () => Node = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
+            {/* <MCItems /> */}
           <TextInput
             type="text"
             style={styles.searchBox}
             placeholder="Search a Minecraft Item (for now)"
             value={searchTerm}
             onchange={handleChange} />
-          <FlatList>
+          {/* <FlatList> */}
             {searchResults.map(item => (
               <li>{item}</li>
             ))}
-          </FlatList>
+          {/* </FlatList> */}
           {/* <Section title="Step One">
             Edit <Text style={styles.highlight}>App.js</Text> to change this
             screen and then come back to see your edits.

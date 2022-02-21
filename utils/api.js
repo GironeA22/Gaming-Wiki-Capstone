@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from 'react';
+import { Text } from 'react-native';
 
 export function MCItems() {
   const [error, setError] = useState(null);
@@ -7,6 +8,7 @@ export function MCItems() {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
+    console.log('test');
     fetch('https://minecraft-ids.grahamedgecombe.com/items.json')
       .then(res => res.json())
       .then(
@@ -19,25 +21,55 @@ export function MCItems() {
           setIsLoaded(true);
           setError(error);
         }
-      )
-  }, [])
-
+      );
+  }, []);
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <Text>Error: {error.message}</Text>;
   } else if (!isLoaded) {
-    return <div>Loading...</div>;
+    return <Text>Loading...</Text>;
   } else {
     return (
       <ul>
         {items.map(item => (
-          <li key={item.id}>
-            {item.name} {item.price}
+          <li key={item.type}>
+            {item.name}
           </li>
         ))}
       </ul>
     );
   }
 }
+//   console.log(useEffect);
+
+// export function MCApi() {
+//   const [error, setError] = useState(null);
+//   const [isLoaded, setIsLoaded] = useState(false);
+//   const [items, setItems] = useState([]);
+
+//   fetch('https://minecraft-ids.grahamedgecombe.com/items.json')
+//     .then(res => res.json())
+//     .then(
+//       (result) => {
+//         console.log(result);
+//         setIsLoaded(true);
+//         setItems(result);
+//         console.log(result)
+//       },
+//       // eslint-disable-next-line no-shadow
+//       (error) => {
+//         setIsLoaded(true);
+//         setError(error);
+//       }
+//     );
+// }
+
+// export function MCApi2() {
+//   fetch('https://minecraft-ids.grahamedgecombe.com/items.json')
+//   .then(response => response.json())
+//   .then(data => console.log(data));
+// }
+
+
 
 
 // export const getWeather = async woeid => {
