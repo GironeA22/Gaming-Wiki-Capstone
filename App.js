@@ -7,11 +7,11 @@
  * @flow strict-local
  */
 var _ = require('lodash');
-import { filter } from 'lodash';
+// import { filter, result } from 'lodash';
 
 import React, { useState, useEffect } from 'react';
 
-import {MCItems,  MCApi2 } from './utils/api';
+import { MCItems, MCApi2 } from './utils/api';
 
 import {
   ScrollView,
@@ -21,7 +21,6 @@ import {
   useColorScheme,
   View,
   TextInput,
-  FlatList,
   ImageBackground,
   KeyboardAvoidingView, // Automatically pushes elements out from under keyboard
   ActivityIndicator, // The spinning loader
@@ -74,16 +73,26 @@ const App: () => Node = () => {
   };
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-  const handleChange = e => {
-    e.preventDefault();
-    setSearchTerm(e.target.value);
-  };
-  useEffect(() => {
-    const results = _.filter(MCItems, (item =>
-      item.toLowerCase().includes(searchTerm)
-    ));
-    setSearchResults(results);
-  }, [searchTerm]);
+
+  function MapResults() {
+    fetch('https://minecraft-ids.grahamedgecombe.com/items.json')
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setSearchResults(result.filter(item =>
+            //   item.toLowerCase().includes(searchTerm)
+            // console.log(result.filter(item =>
+            item.name.toLowerCase().includes(searchTerm.toLowerCase()))
+          );
+        }
+      );
+    return (
+      // console.log(searchResults);
+      searchResults.map((item, i) => (
+        (searchTerm === item.name) ? <Text key={i}>{item.name}</Text> : 'No valid item'
+      ))
+    );
+  }
 
   return (
     <>
@@ -96,18 +105,21 @@ const App: () => Node = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-            {/* <MCItems /> */}
+          {/* <MCItems /> */}
           <TextInput
             type="text"
             style={styles.searchBox}
             placeholder="Search a Minecraft Item (for now)"
-            value={searchTerm}
-            onchange={handleChange} />
-          {/* <FlatList> */}
-            {searchResults.map(item => (
-              <li>{item}</li>
-            ))}
-          {/* </FlatList> */}
+            name="searchMCItems"
+            // value={searchTerm.searchMCItems}
+            onChangeText={(text) => setSearchTerm(text)}
+            onSubmitEditing={MapResults}
+          />
+          <Section>
+            <MapResults />
+            {/* {console.log(mapResults)}
+            {console.log(mapResults.item)} */}
+          </Section>
           {/* <Section title="Step One">
             Edit <Text style={styles.highlight}>App.js</Text> to change this
             screen and then come back to see your edits.

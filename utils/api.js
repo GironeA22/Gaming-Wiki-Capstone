@@ -7,7 +7,7 @@ export function MCItems() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
 
-  useEffect(() => {
+  // useEffect(() => {
     console.log('test');
     fetch('https://minecraft-ids.grahamedgecombe.com/items.json')
       .then(res => res.json())
@@ -15,30 +15,31 @@ export function MCItems() {
         (result) => {
           setIsLoaded(true);
           setItems(result);
-        },
-        // eslint-disable-next-line no-shadow
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
+          return result;
         }
-      );
-  }, []);
-  if (error) {
-    return <Text>Error: {error.message}</Text>;
-  } else if (!isLoaded) {
-    return <Text>Loading...</Text>;
-  } else {
-    return (
-      <ul>
-        {items.map(item => (
-          <li key={item.type}>
-            {item.name}
-          </li>
-        ))}
-      </ul>
-    );
-  }
-}
+      }
+        // eslint-disable-next-line no-shadow
+  //       (error) => {
+  //         setIsLoaded(true);
+  //         setError(error);
+  //       }
+  //     );
+  // // }, []);
+  // if (error) {
+  //   return <Text>Error: {error.message}</Text>;
+  // } else if (!isLoaded) {
+  //   return <Text>Loading...</Text>;
+  // } else {
+  //   return (
+  //     <ul>
+  //       {items.map(item => (
+  //         <li key={item.type}>
+  //           {item.name}
+  //         </li>
+  //       ))}
+  //     </ul>
+  //   );
+  // }
 //   console.log(useEffect);
 
 // export function MCApi() {
