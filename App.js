@@ -42,7 +42,7 @@ const Section = ({ children, title }): Node => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
-      <Text
+      {/* <Text
         style={[
           styles.sectionTitle,
           {
@@ -50,7 +50,7 @@ const Section = ({ children, title }): Node => {
           },
         ]}>
         {title}
-      </Text>
+      </Text> */}
       <Text
         style={[
           styles.sectionDescription,
@@ -89,7 +89,7 @@ const App: () => Node = () => {
     return (
       // console.log(searchResults);
       searchResults.map((item, i) => (
-        (searchTerm === item.name) ? <Text key={i}>{item.name}</Text> : 'No valid item'
+        (searchTerm.toLowerCase() === item.name.toLowerCase()) ? <Text key={i}>{item.name}</Text> : null
       ))
     );
   }
