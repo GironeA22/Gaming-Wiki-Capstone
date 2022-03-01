@@ -11,13 +11,23 @@ import {
     KeyboardAvoidingView, // Automatically pushes elements out from under keyboard
     ActivityIndicator, // The spinning loader
   } from 'react-native';
+
   import React from 'react';
 
+  import {
+    Colors,
+  } from 'react-native/Libraries/NewAppScreen';
 
-  
+  const image = {uri: '../assets/jbareham_191158_ply0958_decade_minecraft.jpg'};
 
-function Homepage() {
-
+export default function Homepage() {
+  return (
+    <>
+    <ImageBackground source={image}>
+ <Text style={styles.homeContainer}>Welcome to the wiki!</Text>
+ </ImageBackground>
+ </>
+  );
 }
 
 const Section = ({ children, title }): Node => {
@@ -47,9 +57,17 @@ const Section = ({ children, title }): Node => {
   };
 
 const styles = StyleSheet.create({
-    container: {
+    homeContainer: {
       flex: 1,
-      backgroundColor: '#34495E',
+      backgroundColor: '#FFFFFF',
+      opacity: 0.5,
+      borderRadius: 25,
+      height: 56,
+      width: 500,
+      marginLeft: 50,
+      marginTop: 10,
+      textAlign: 'center',
+      textAlignVertical: 'center',
     },
     imageContainer: {
       flex: 1,
