@@ -71,15 +71,16 @@ const App: () => Node = () => {
   return (
     <>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-       <ImageBackground source={Minecraft} resizeMode="cover">
+      
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-       
+        <ImageBackground source={Minecraft} resizeMode="cover">
           <View
-            style={{
-              backgroundColor: isDarkMode ? Colors.black : Colors.white,
-            }}>
+            // style={{
+            //   backgroundColor: isDarkMode ? Colors.black : Colors.white,
+            // }}
+            >
             <Homepage />
             <Section title="Step One">
               Edit <Text style={styles.highlight}>App.js</Text> to change this
@@ -96,9 +97,8 @@ const App: () => Node = () => {
             </Section>
             <LearnMoreLinks />
           </View>
-       
+        </ImageBackground>
       </ScrollView>
-       </ImageBackground>
     </>
   );
 };
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
   detailsContainer: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: 'rgba(0,0,0,0.2)',
+    // backgroundColor: 'rgba(0,0,0,0.2)',
     paddingHorizontal: 20,
   },
   textStyle: {
