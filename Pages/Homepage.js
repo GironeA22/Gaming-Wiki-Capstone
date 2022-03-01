@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   detailsContainer: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: 'rgba(0,0,0,0.2)',
+    // backgroundColor: 'rgba(0,0,0,0.2)',
     paddingHorizontal: 20,
   },
   textStyle: {

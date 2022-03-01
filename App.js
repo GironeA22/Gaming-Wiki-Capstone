@@ -71,11 +71,10 @@ const App: () => Node = () => {
   return (
     <>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        <ImageBackground source={Minecraft} resizeMode="cover">
+        <ImageBackground source={Minecraft} resizeMode="cover" style={styles.image}>
           <View
             // style={{
             //   backgroundColor: isDarkMode ? Colors.black : Colors.white,
@@ -106,7 +105,7 @@ const App: () => Node = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#34495E',
+    // backgroundColor: '#34495E',
   },
   imageContainer: {
     flex: 1,
