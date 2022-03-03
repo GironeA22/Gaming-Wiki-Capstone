@@ -29,9 +29,10 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-// import moment from 'moment';
+import Homepage from './Pages/Homepage';
+import Minecraft from './assets/jbareham_191158_ply0958_decade_minecraft.jpg';
 
-// import SearchInput from './SearchInput';
+// import moment from 'moment';
 
 const Section = ({ children, title }): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -71,26 +72,28 @@ const App: () => Node = () => {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
+        <ImageBackground source={Minecraft} resizeMode="cover" style={styles.image}>
+          <View
+          // style={{
+          //   backgroundColor: isDarkMode ? Colors.black : Colors.white,
+          // }}
+          >
+            <Homepage />
+            {/* <Section title={null}>
+              
+            </Section>
+            <Section title={null}>
+              .
+            </Section>
+            <Section title={null}>
+              .
+            </Section>
+            <Section title={null}>
+              .
+            </Section>
+            <LearnMoreLinks /> */}
+          </View>
+        </ImageBackground>
       </ScrollView>
     </>
   );
@@ -99,7 +102,7 @@ const App: () => Node = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#34495E',
+    // backgroundColor: '#34495E',
   },
   imageContainer: {
     flex: 1,
@@ -113,7 +116,7 @@ const styles = StyleSheet.create({
   detailsContainer: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: 'rgba(0,0,0,0.2)',
+    // backgroundColor: 'rgba(0,0,0,0.2)',
     paddingHorizontal: 20,
   },
   textStyle: {
