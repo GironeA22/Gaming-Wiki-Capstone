@@ -30,11 +30,9 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import Homepage from './Pages/Homepage';
-import {Minecraft} from './assets/jbareham_191158_ply0958_decade_minecraft.jpg';
+import Minecraft from './assets/jbareham_191158_ply0958_decade_minecraft.jpg';
 
 // import moment from 'moment';
-
-// import SearchInput from './SearchInput';
 
 const Section = ({ children, title }): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -76,25 +74,24 @@ const App: () => Node = () => {
         style={backgroundStyle}>
         <ImageBackground source={Minecraft} resizeMode="cover" style={styles.image}>
           <View
-            // style={{
-            //   backgroundColor: isDarkMode ? Colors.black : Colors.white,
-            // }}
-            >
+          // style={{
+          //   backgroundColor: isDarkMode ? Colors.black : Colors.white,
+          // }}
+          >
             <Homepage />
-            <Section title="Step One">
-              Edit <Text style={styles.highlight}>App.js</Text> to change this
-              screen and then come back to see your edits.
+            {/* <Section title={null}>
+              
             </Section>
-            <Section title="See Your Changes">
-              <ReloadInstructions />
+            <Section title={null}>
+              .
             </Section>
-            <Section title="Debug">
-              <DebugInstructions />
+            <Section title={null}>
+              .
             </Section>
-            <Section title="Learn More">
-              Read the docs to discover what to do next:
+            <Section title={null}>
+              .
             </Section>
-            <LearnMoreLinks />
+            <LearnMoreLinks /> */}
           </View>
         </ImageBackground>
       </ScrollView>

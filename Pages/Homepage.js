@@ -1,57 +1,30 @@
 /* eslint-disable prettier/prettier */
 
 import {
-  ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
-  useColorScheme,
-  View,
-  ImageBackground,
-  KeyboardAvoidingView, // Automatically pushes elements out from under keyboard
-  ActivityIndicator, // The spinning loader
+  Image,
+  TouchableWithoutFeedback,
+  Alert,
 } from 'react-native';
 
 import React from 'react';
 
-import {
-  Colors,
-} from 'react-native/Libraries/NewAppScreen';
-
-import { Minecraft } from '../assets/jbareham_191158_ply0958_decade_minecraft.jpg';
-// const image = {uri: '../assets/jbareham_191158_ply0958_decade_minecraft.jpg'};
+import MCSearch from '../assets/MinecraftSearchIcon.png';
 
 export default function Homepage() {
   return (
-    <Text style={styles.homeContainer}>Welcome to the wiki!</Text>
+    <>
+      <Text style={styles.homeContainer}>Welcome to the wiki!</Text>
+      <TouchableWithoutFeedback onPress={() => Alert.alert('This will lead to the search page')}>
+      <Image source={MCSearch} style={styles.image} />
+      </TouchableWithoutFeedback>
+      <Text style={styles.homeBodyContainer}>
+        <Text style={styles.highlight}>The body of this page will likely be used to show the users bookmarked pages when that functionality is implemented</Text>
+      </Text>
+    </>
   );
 }
-
-const Section = ({ children, title }): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
 
 const styles = StyleSheet.create({
   homeContainer: {
@@ -65,30 +38,31 @@ const styles = StyleSheet.create({
     marginTop: 10,
     textAlign: 'center',
     textAlignVertical: 'center',
+    color: 'black',
   },
-  imageContainer: {
+  homeBodyContainer: {
     flex: 1,
+    backgroundColor: '#FFFFFF',
+    opacity: 0.5,
+    borderRadius: 25,
+    height: 805,
+    width: 550,
+    marginLeft: 25,
+    marginTop: 20,
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    color: 'black',
   },
   image: {
     flex: 1,
-    width: null,
-    height: null,
-    resizeMode: 'cover',
-  },
-  detailsContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    // backgroundColor: 'rgba(0,0,0,0.2)',
-    paddingHorizontal: 20,
+    width: 50,
+    height: 55,
+    opacity: 0.5,
+    marginTop: -55,
+    marginLeft: 480,
   },
   textStyle: {
     textAlign: 'center',
     color: 'white',
-  },
-  largeText: {
-    fontSize: 44,
-  },
-  smallText: {
-    fontSize: 18,
   },
 });
