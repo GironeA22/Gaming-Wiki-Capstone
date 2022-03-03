@@ -15,6 +15,9 @@ import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
 
+import Homepage from './Pages/Homepage';
+import Minecraft from './assets/jbareham_191158_ply0958_decade_minecraft.jpg';
+
 const Section = ({ children, title }): Node => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
@@ -88,6 +91,28 @@ const App: () => Node = () => {
             <MapResults />
           </Section>
         </View>
+        <ImageBackground source={Minecraft} resizeMode="cover" style={styles.image}>
+          <View
+          // style={{
+          //   backgroundColor: isDarkMode ? Colors.black : Colors.white,
+          // }}
+          >
+            <Homepage />
+            {/* <Section title={null}>
+              
+            </Section>
+            <Section title={null}>
+              .
+            </Section>
+            <Section title={null}>
+              .
+            </Section>
+            <Section title={null}>
+              .
+            </Section>
+            <LearnMoreLinks /> */}
+          </View>
+        </ImageBackground>
       </ScrollView>
     </>
   );
