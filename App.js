@@ -1,17 +1,5 @@
 /* eslint-disable prettier/prettier */
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-var _ = require('lodash');
-// import { filter, result } from 'lodash';
-
-import React, { useState, useEffect } from 'react';
-
-import { MCItems, MCApi2 } from './utils/api';
+import React, { useState } from 'react';
 
 import {
   ScrollView,
@@ -21,22 +9,11 @@ import {
   useColorScheme,
   View,
   TextInput,
-  ImageBackground,
-  KeyboardAvoidingView, // Automatically pushes elements out from under keyboard
-  ActivityIndicator, // The spinning loader
 } from 'react-native';
 
 import {
   Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-
-// import moment from 'moment';
-
-// import SearchInput from './SearchInput';
 
 const Section = ({ children, title }): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -64,8 +41,6 @@ const Section = ({ children, title }): Node => {
   );
 };
 
-
-
 const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
@@ -80,14 +55,11 @@ const App: () => Node = () => {
       .then(
         (result) => {
           setSearchResults(result.filter(item =>
-            //   item.toLowerCase().includes(searchTerm)
-            // console.log(result.filter(item =>
             item.name.toLowerCase().includes(searchTerm.toLowerCase()))
           );
         }
       );
     return (
-      // console.log(searchResults);
       searchResults.map((item, i) => (
         (searchTerm.toLowerCase() === item.name.toLowerCase()) ? <Text key={i}>{item.name}</Text> : null
       ))
@@ -100,40 +72,21 @@ const App: () => Node = () => {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        <Header />
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          {/* <MCItems /> */}
           <TextInput
             type="text"
             style={styles.searchBox}
             placeholder="Search a Minecraft Item (for now)"
             name="searchMCItems"
-            // value={searchTerm.searchMCItems}
             onChangeText={(text) => setSearchTerm(text)}
             onSubmitEditing={MapResults}
           />
           <Section>
             <MapResults />
-            {/* {console.log(mapResults)}
-            {console.log(mapResults.item)} */}
           </Section>
-          {/* <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks /> */}
         </View>
       </ScrollView>
     </>
