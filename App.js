@@ -9,6 +9,7 @@ import {
   useColorScheme,
   View,
   TextInput,
+  ImageBackground,
 } from 'react-native';
 
 import {
@@ -99,7 +100,6 @@ const App: () => Node = () => {
           >
             <Homepage />
             {/* <Section title={null}>
-              
             </Section>
             <Section title={null}>
               .
