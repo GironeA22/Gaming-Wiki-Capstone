@@ -1,14 +1,6 @@
 /* eslint-disable prettier/prettier */
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+import React, { useState } from 'react';
 
-import React from 'react';
-// import type {Node} from 'react';
 import {
   ScrollView,
   StatusBar,
@@ -16,29 +8,21 @@ import {
   Text,
   useColorScheme,
   View,
-  ImageBackground,
-  KeyboardAvoidingView, // Automatically pushes elements out from under keyboard
-  ActivityIndicator, // The spinning loader
+  TextInput,
 } from 'react-native';
 
 import {
   Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
 import Homepage from './Pages/Homepage';
 import Minecraft from './assets/jbareham_191158_ply0958_decade_minecraft.jpg';
 
-// import moment from 'moment';
-
 const Section = ({ children, title }): Node => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
-      <Text
+      {/* <Text
         style={[
           styles.sectionTitle,
           {
@@ -46,7 +30,7 @@ const Section = ({ children, title }): Node => {
           },
         ]}>
         {title}
-      </Text>
+      </Text> */}
       <Text
         style={[
           styles.sectionDescription,
@@ -65,6 +49,25 @@ const App: () => Node = () => {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+
+  function MapResults() {
+    fetch('https://minecraft-ids.grahamedgecombe.com/items.json')
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setSearchResults(result.filter(item =>
+            item.name.toLowerCase().includes(searchTerm.toLowerCase()))
+          );
+        }
+      );
+    return (
+      searchResults.map((item, i) => (
+        (searchTerm.toLowerCase() === item.name.toLowerCase()) ? <Text key={i}>{item.name}</Text> : null
+      ))
+    );
+  }
 
   return (
     <>
@@ -72,6 +75,22 @@ const App: () => Node = () => {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
+        <View
+          style={{
+            backgroundColor: isDarkMode ? Colors.black : Colors.white,
+          }}>
+          <TextInput
+            type="text"
+            style={styles.searchBox}
+            placeholder="Search a Minecraft Item (for now)"
+            name="searchMCItems"
+            onChangeText={(text) => setSearchTerm(text)}
+            onSubmitEditing={MapResults}
+          />
+          <Section>
+            <MapResults />
+          </Section>
+        </View>
         <ImageBackground source={Minecraft} resizeMode="cover" style={styles.image}>
           <View
           // style={{
@@ -128,6 +147,11 @@ const styles = StyleSheet.create({
   },
   smallText: {
     fontSize: 18,
+  },
+  searchBox: {
+    backgroundColor: 'red',
+    borderColor: 'black',
+    textDecorationColor: 'hotpink',
   },
 });
 
