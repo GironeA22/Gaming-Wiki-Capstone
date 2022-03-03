@@ -76,41 +76,22 @@ const App: () => Node = () => {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <TextInput
-            type="text"
-            style={styles.searchBox}
-            placeholder="Search a Minecraft Item (for now)"
-            name="searchMCItems"
-            onChangeText={(text) => setSearchTerm(text)}
-            onSubmitEditing={MapResults}
-          />
-          <Section>
-            <MapResults />
-          </Section>
-        </View>
         <ImageBackground source={Minecraft} resizeMode="cover" style={styles.image}>
-          <View
-          // style={{
-          //   backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          // }}
-          >
+          <View>
+            <TextInput
+              type="text"
+              style={styles.searchBox}
+              placeholder="Search a Minecraft Item (for now)"
+              name="searchMCItems"
+              onChangeText={(text) => setSearchTerm(text)}
+              onSubmitEditing={MapResults}
+            />
+            <Section>
+              <MapResults />
+            </Section>
+            {/* </View> */}
+            {/* <View> */}
             <Homepage />
-            {/* <Section title={null}>
-            </Section>
-            <Section title={null}>
-              .
-            </Section>
-            <Section title={null}>
-              .
-            </Section>
-            <Section title={null}>
-              .
-            </Section>
-            <LearnMoreLinks /> */}
           </View>
         </ImageBackground>
       </ScrollView>
