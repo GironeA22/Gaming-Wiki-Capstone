@@ -61,8 +61,8 @@ export default function Searchpage() {
               onSubmitEditing={MapResults}
             />
             <Text style={styles.searchBoxResults}>
-              <TouchableWithoutFeedback>
-              <MapResults />
+              <TouchableWithoutFeedback style={styles.textStyle}>
+              <MapResults/>
               </TouchableWithoutFeedback>
             </Text>
           </ImageBackground>
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     textAlign: 'center',
     textAlignVertical: 'center',
-    color: 'black',
+    color: 'blue',
   },
   image: {
     flex: 1,
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   textStyle: {
-    textAlign: 'center',
-    color: 'white',
+    textAlign: 'left',
+    color: 'blue',
   },
 });
