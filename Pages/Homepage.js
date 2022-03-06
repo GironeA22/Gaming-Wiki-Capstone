@@ -5,23 +5,50 @@ import {
   Text,
   Image,
   TouchableWithoutFeedback,
-  Alert,
+  StatusBar,
+  useColorScheme,
+  ScrollView,
+  ImageBackground,
+  View,
 } from 'react-native';
 
 import React from 'react';
 
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+const Stack = createNativeStackNavigator();
+
+import {
+  Colors,
+} from 'react-native/Libraries/NewAppScreen';
+
 import MCSearch from '../assets/MinecraftSearchIcon.png';
 
-export default function Homepage() {
+import Minecraft from '../assets/jbareham_191158_ply0958_decade_minecraft.jpg';
+
+export default function Homepage({ navigation }) {
+  const isDarkMode = useColorScheme() === 'dark';
+  const backgroundStyle = {
+    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  };
   return (
     <>
-      <Text style={styles.homeContainer}>Welcome to the wiki!</Text>
-      <TouchableWithoutFeedback onPress={() => Alert.alert('This will lead to the search page')}>
-      <Image source={MCSearch} style={styles.image} />
-      </TouchableWithoutFeedback>
-      <Text style={styles.homeBodyContainer}>
-        <Text style={styles.highlight}>The body of this page will likely be used to show the users bookmarked pages when that functionality is implemented</Text>
-      </Text>
+    <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        style={backgroundStyle}>
+          <View>
+            <ImageBackground source={Minecraft} resizeMode="cover" style={styles.image}>
+            <Text style={styles.homeContainer}>Welcome to the wiki!</Text>
+            <TouchableWithoutFeedback onPress={() => navigation.navigate('Search')}>
+              <Image source={MCSearch} style={styles.SearchImage} />
+            </TouchableWithoutFeedback>
+            <Text style={styles.homeBodyContainer}>
+              <Text style={styles.highlight}>The body of this page will likely be used to show the users bookmarked pages when that functionality is implemented</Text>
+            </Text>
+            </ImageBackground>
+          </View>
+      </ScrollView>
     </>
   );
 }
@@ -45,7 +72,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     opacity: 0.5,
     borderRadius: 25,
-    height: 805,
+    height: 739.5,
     width: 550,
     marginLeft: 25,
     marginTop: 20,
@@ -53,7 +80,7 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center',
     color: 'black',
   },
-  image: {
+  SearchImage: {
     flex: 1,
     width: 50,
     height: 55,
@@ -64,5 +91,11 @@ const styles = StyleSheet.create({
   textStyle: {
     textAlign: 'center',
     color: 'white',
+  },
+  image: {
+    flex: 1,
+    width: null,
+    height: null,
+    resizeMode: 'cover',
   },
 });
