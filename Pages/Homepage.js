@@ -14,10 +14,6 @@ import {
 
 import React from 'react';
 
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer } from '@react-navigation/native';
-const Stack = createNativeStackNavigator();
-
 import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
@@ -33,12 +29,12 @@ export default function Homepage({ navigation }) {
   };
   return (
     <>
-    <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-          <View>
-            <ImageBackground source={Minecraft} resizeMode="cover" style={styles.image}>
+        <View>
+          <ImageBackground source={Minecraft} resizeMode="cover" style={styles.image}>
             <Text style={styles.homeContainer}>Welcome to the wiki!</Text>
             <TouchableWithoutFeedback onPress={() => navigation.navigate('Search')}>
               <Image source={MCSearch} style={styles.SearchImage} />
@@ -46,8 +42,8 @@ export default function Homepage({ navigation }) {
             <Text style={styles.homeBodyContainer}>
               <Text style={styles.highlight}>The body of this page will likely be used to show the users bookmarked pages when that functionality is implemented</Text>
             </Text>
-            </ImageBackground>
-          </View>
+          </ImageBackground>
+        </View>
       </ScrollView>
     </>
   );

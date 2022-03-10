@@ -9,6 +9,8 @@ import {
   TouchableWithoutFeedback,
   useColorScheme,
   ScrollView,
+  Button,
+  Alert,
   View,
 } from 'react-native';
 
@@ -20,7 +22,7 @@ import React, { useState } from 'react';
 
 import Minecraft from '../assets/jbareham_191158_ply0958_decade_minecraft.jpg';
 
-export default function Searchpage() {
+export default function Searchpage({ navigation }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const isDarkMode = useColorScheme() === 'dark';
@@ -29,7 +31,7 @@ export default function Searchpage() {
   };
 
   function MapResults() {
-    fetch('https://minecraft-ids.grahamedgecombe.com/items.json')
+    fetch('http://pacer-test.ddns.net:8080/api/api.json')
       .then(res => res.json())
       .then(
         (result) => {
@@ -38,20 +40,26 @@ export default function Searchpage() {
           );
         }
       );
+
+      function onPressHandler(name) {
+        
+      }
+
     return (
       searchResults.map((item, i) => (
-        (searchTerm.toLowerCase() === item.name.toLowerCase()) ? <Text key={i}>{item.name}</Text> : null
+        (searchTerm.toLowerCase() === item.name.toLowerCase()) ? <Text onPress={navigation.navigate('Item', {name: item.name})} key={i}>{item.name}</Text> : null
       ))
     );
   }
+
   return (
     <>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-         <View>
-         <ImageBackground source={Minecraft} resizeMode="cover" style={styles.image}>
+        <View>
+          <ImageBackground source={Minecraft} resizeMode="cover" style={styles.image}>
             <TextInput
               type="text"
               style={styles.searchBox}
@@ -60,11 +68,9 @@ export default function Searchpage() {
               onChangeText={(text) => setSearchTerm(text)}
               onSubmitEditing={MapResults}
             />
-            <Text style={styles.searchBoxResults}>
-              <TouchableWithoutFeedback style={styles.textStyle}>
-              <MapResults/>
-              </TouchableWithoutFeedback>
-            </Text>
+              <Text style={styles.searchBoxResults}>
+                <MapResults />
+              </Text>
           </ImageBackground>
         </View>
       </ScrollView>
